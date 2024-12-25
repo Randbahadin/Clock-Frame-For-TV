@@ -1,1 +1,5 @@
+# Redirect all non-asset paths to index.html
 /*    /index.html   200
+
+# Ensure image paths are not redirected
+/img/*  /imgs/:splat  200
