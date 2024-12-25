@@ -1,12 +1,13 @@
 [build]
-  publish = "web"  # Specify that the publish directory is the 'web' folder
-  command = ""     # No build command for static sites
+  publish = "web"  # Publish directory, where the index.html resides
+  command = ""     # No build command, since it's a static site
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+# Optional: If you want to make sure resources like images are served correctly
 [[redirects]]
   from = "/imgs/*"
   to = "/imgs/:splat"
