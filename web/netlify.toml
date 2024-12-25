@@ -1,0 +1,10 @@
+# netlify.toml
+[build]
+  # Directory containing the built files to deploy
+  publish = "public"
+
+[[redirects]]
+  # Redirect to your main page (if needed)
+  from = "/*"
+  to = "/index.html"
+  status = 200
