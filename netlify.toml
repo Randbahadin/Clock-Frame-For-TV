@@ -1,10 +1,8 @@
-# netlify.toml
 [build]
-  # Directory containing the built files to deploy
-  publish = "public"
+  publish = "."
+  command = "" # Add your build command here if necessary, or leave it empty for static sites.
 
 [[redirects]]
-  # Redirect to your main page (if needed)
   from = "/*"
   to = "/web/index.html"
   status = 200
