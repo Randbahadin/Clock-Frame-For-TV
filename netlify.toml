@@ -1,8 +1,8 @@
 [build]
-  publish = "."
-  command = "" # Add your build command here if necessary, or leave it empty for static sites.
+  publish = "web"
+  command = "" # Leave empty for static sites with no build process
 
 [[redirects]]
   from = "/*"
-  to = "/web/index.html"
+  to = "/index.html"
   status = 200
