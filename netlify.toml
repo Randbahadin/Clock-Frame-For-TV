@@ -1,8 +1,13 @@
 [build]
-  publish = "web"
-  command = "" # Leave empty for static sites with no build process
+  publish = "web"  # Specify that the publish directory is the 'web' folder
+  command = ""     # No build command for static sites
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/imgs/*"
+  to = "/imgs/:splat"
   status = 200
