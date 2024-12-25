@@ -6,5 +6,5 @@
 [[redirects]]
   # Redirect to your main page (if needed)
   from = "/*"
-  to = "/index.html"
+  to = "/web/index.html"
   status = 200
