@@ -1,13 +1,11 @@
 [build]
-  publish = "web"  # Publish directory, where the index.html resides
-  command = ""     # No build command, since it's a static site
+  publish = "web"  # The directory where index.html is located
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Optional: If you want to make sure resources like images are served correctly
 [[redirects]]
   from = "/imgs/*"
   to = "/imgs/:splat"
