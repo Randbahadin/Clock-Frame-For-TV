@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "A project for displaying a clock on the TV screen",
   "main": "index.js",
+  {
   "scripts": {
-    "start": "node index.js"
-  },
+    "build": "webpack --config webpack.config.js"
+  }
+},
   "keywords": [
     "clock",
     "TV",
