@@ -1,6 +1,6 @@
 [build]
-  publish = "web"  # Directory where your static files (HTML, images) are located
-  command = ""  # Leave empty since you're not using a build process
+  publish = "web"   # The folder where your static files are located
+  command = ""      # No build command needed as you're doing everything manually
 
 [[redirects]]
   from = "/*"
