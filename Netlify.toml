@@ -1,2 +1,3 @@
 [build]
   publish = "Clock-Frame-For-TV"
+  command = "" # No build command since you're doing everything manually
