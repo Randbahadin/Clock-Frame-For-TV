@@ -1,6 +1,6 @@
 [build]
-  publish = "web"   # The folder where your static files are located
-  command = ""      # No build command needed as you're doing everything manually
+  publish = "web"  # Use the "web" folder as the root directory
+  command = ""  # No build command needed for manual deployment
 
 [[redirects]]
   from = "/*"
