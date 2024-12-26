@@ -1,7 +1,0 @@
-[build]
-  publish = "Clock-Frame-For-TV"  # Replace with your actual build output directory
-  base = "Clock-Frame-For-TV"  # Optional if this is already the root directory
-  command = "npm run build"  # Command to build your project
-
-[build.environment]
-  NODE_VERSION = "18"  
