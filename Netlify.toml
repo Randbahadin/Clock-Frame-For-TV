@@ -1,3 +1,5 @@
 [build]
-  command = ""  # No build command needed for static site
-  publish = "web"  # Directory where your HTML, CSS, and assets (like images) are located
+  command = ""  # No build command needed for static sites
+  publish = "web"  # Publish directory is 'web'
+
+# Optionally, you can add headers or other settings, but redirects are no longer included.
