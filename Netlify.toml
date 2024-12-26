@@ -1,3 +1,12 @@
 [build]
-  publish = "Clock-Frame-For-TV"
-  command = ""  # No build command needed since you're managing it manually
+  base = "Clock-Frame-For-TV"  # Optional if this is already the root directory
+  publish = "dist"  # Replace 'dist' with your build output folder name
+  command = "npm run build"  # Command to build your project
+
+[build.environment]
+  NODE_VERSION = "18"  # Use the Node.js version required for your project
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
