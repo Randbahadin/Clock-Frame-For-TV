@@ -1,0 +1,8 @@
+# Redirect from /old-home to /new-home
+/old-home  /new-home  301
+
+# Redirect from any path under /old-path to /new-path with the same structure
+/old-path/*  /new-path/:splat  301
+
+# Redirect 404 error to homepage
+/404.html  /index.html  200
