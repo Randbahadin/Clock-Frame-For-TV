@@ -1,5 +1,5 @@
 [build]
-  publish = "/web/html/index.html"   # Directory containing the files to be deployed
+  publish = "web"   # Directory containing the files to be deployed
   command = ""      # No build command since it's a static site
 
 [[redirects]]
