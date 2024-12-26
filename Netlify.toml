@@ -1,11 +1,7 @@
 [build]
-  publish = "public"  # Ensure this directory exists and contains your final build files
-  command = "echo 'No build steps required'"  # As you're doing this manually, no build step is required
-
-[plugins]
-  # Add any necessary plugins here
+  publish = "web"  # Make sure it points to the 'public' folder
 
 [[redirects]]
-  from = "/old-url"
-  to = "/new-url"
+  from = "/old-path"
+  to = "/new-path"
   status = 301
