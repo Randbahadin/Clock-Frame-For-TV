@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Clock Frame</title>
+    <link rel="icon" href="../clock-solid.svg" type="image/svg+xml"> 
+    <style>
+        /* Full-screen layout */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-image 0.5s ease;
+        }
+
+        .frame {
+            width: 80%;
+            height: 80%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent frame for contrast */
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            position: absolute;
+        }
+
+        .clock {
+            font-size: 4em;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="frame" id="frame">
+        <div id="clock" class="clock"></div>
+    </div>
+
+    <script>
+        const images = [
+            '../paint1.jpg',
+            '../paint2.jpg',
+            '../paint3.jpg',
+            '../paint4.jpg',
+            '../paint5.jpg'
+        ];
+
+        const positions = [
+            { top: '10%', left: '10%' },
+            { top: '10%', right: '10%' },
+            { bottom: '10%', left: '10%' },
+            { bottom: '10%', right: '10%' },
+            { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }
+        ];
+
+        let currentImageIndex = 0;
+
+        function updateBackground() {
+            const body = document.body;
+            body.style.backgroundImage = `url(${images[currentImageIndex]})`;
+
+            const frame = document.getElementById('frame');
+            const position = positions[currentImageIndex];
+            frame.style.position = 'absolute';
+            frame.style.top = position.top || '';
+            frame.style.left = position.left || '';
+            frame.style.right = position.right || '';
+            frame.style.bottom = position.bottom || '';
+            frame.style.transform = position.transform || '';
+        }
+
+        function updateClock() {
+            const now = new Date();
+
+            const options = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true,
+                timeZone: 'Asia/Baghdad'
+            };
+
+            const timeString = now.toLocaleTimeString('en-US', options);
+            document.getElementById('clock').innerText = timeString;
+        }
+
+        function changeImage(direction) {
+            if (direction === 'left') {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            } else if (direction === 'right') {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+            }
+            updateBackground();
+        }
+
+        // Event listener for remote control keys
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                changeImage('left');
+            } else if (event.key === 'ArrowRight') {
+                changeImage('right');
+            }
+        });
+
+        // Initialize clock and background
+        setInterval(updateClock, 1000);
+        updateClock();
+        updateBackground();
+    </script>
+</body>
+</html>

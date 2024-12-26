@@ -1,0 +1,14 @@
+[build]
+  publish = "web"   # Directory containing the files to be deployed
+  command = ""      # No build command since it's a static site
+
+[[redirects]]
+  from = "/old-page"
+  to = "/new-page"
+  status = 301
+
+# Optional: If you need specific headers for caching or security purposes, you can add those here
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
