@@ -3,7 +3,7 @@
   "version": "1.0",
   "description": "A simple clock frame with rotating background images for TV.",
   "developer": "Rand Bahadin",
-  "main": "Clock-Frame-For-TV",
+  "main": "../html/index.html",
   "icons": [
     {
       "src": "../icon/clock-solid.svg", 
