@@ -1,5 +1,5 @@
 [build]
-  publish = "public"   # Directory containing the files to be deployed
+  publish = "main"   # Directory containing the files to be deployed
   command = ""      # No build command since it's a static site
 
 [[redirects]]
