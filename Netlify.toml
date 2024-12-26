@@ -1,9 +1,9 @@
 [build]
-  command = ""  # No build command since it's a static site
-  publish = "web"  # The folder that contains your site files (web folder)
-  functions = "src/functions"  # If you have serverless functions, specify here
+  command = ""  # No build command needed for static sites
+  publish = "web"  # The directory containing your site files
+  functions = "src/functions"  # Optional: If you have serverless functions
 
-# Redirect rules (for URL redirections)
+# Redirects Configuration
 [[redirects]]
   from = "/old-home"
   to = "/new-home"
@@ -14,21 +14,25 @@
   to = "/new-path/:splat"
   status = 301  # Permanent redirect
 
-# Header rules (for setting HTTP headers)
+[[redirects]]
+  from = "/404.html"
+  to = "/index.html"  # Redirect 404 page to homepage
+  status = 200  # OK status code
+
+# Headers Configuration
 [[headers]]
   for = "/*"  # Apply these headers to all paths
   [headers.values]
-    X-Content-Type-Options = "nosniff"  # Prevent MIME-sniffing attacks
-    X-Frame-Options = "DENY"  # Prevent the page from being embedded in a frame
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"  # Force HTTPS
+    X-Content-Type-Options = "nosniff"  # Prevent MIME-sniffing
+    X-Frame-Options = "DENY"  # Prevent page embedding in frames
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"  # Force HTTPS for security
 
 [[headers]]
-  for = "/imgs/*"  # Apply these headers to images
+  for = "/imgs/*"  # Apply headers to all images
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"  # Cache images for a long time
 
-# Example of a custom 404 page redirection
-[[redirects]]
-  from = "/404.html"
-  to = "/index.html"  # Redirect 404 errors to index page (if required)
-  status = 200
+[[headers]]
+  for = "/index.html"  # Apply headers to the index.html (or any other specific page)
+  [headers.values]
+    Cache-Control = "no-store"  # Prevent caching of the homepage to always serve fresh content
