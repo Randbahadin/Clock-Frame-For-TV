@@ -1,7 +1,2 @@
 [build]
-  publish = "public"  # Make sure it points to the 'public' folder
-
-[[redirects]]
-  from = "/old-path"
-  to = "/new-path"
-  status = 301
+  publish = "web" 
