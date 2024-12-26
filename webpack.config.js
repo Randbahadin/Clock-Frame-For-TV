@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js', // Entry point for your app
+  entry: './src/index.js', // The entry point for your app
   output: {
-    filename: 'bundle.js', // Output file name
-    path: path.resolve(__dirname, 'public'), // Output directory
+    filename: 'bundle.js', // The output file name
+    path: path.resolve(__dirname, 'Clock-Frame-For-TV'), // Change this to the folder where you want the bundled file
   },
   mode: 'development', // Set to 'production' for production builds
 };
