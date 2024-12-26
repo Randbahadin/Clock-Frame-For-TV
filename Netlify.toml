@@ -1,9 +1,7 @@
 [build]
-  # The directory to publish to Netlify (ensure this points to the correct folder with your static files)
-  publish = "web"  # Change to "web" or the directory where your static HTML and assets are stored
-
-  # No build command if you're not using any build system
-  command = ""  # Leave empty for static sites with no build process
+  # The directory to publish to Netlify
+  publish = "web"  # Make sure this points to the correct directory (e.g., "web")
+  command = ""  # Leave empty if you don't need a build process
 
 [[redirects]]
   # Redirects for routing configuration
