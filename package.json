@@ -1,0 +1,17 @@
+{
+  "name": "Clock-Frame-For-TV",
+  "version": "1.0.0",
+  "description": "A project for displaying a clock on the TV screen",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "clock",
+    "TV",
+    "display"
+  ],
+  "author": "Randbahadin",
+  "license": "ISC",
+  "dependencies": {}
+}
