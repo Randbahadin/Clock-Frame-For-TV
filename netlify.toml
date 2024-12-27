@@ -1,6 +1,6 @@
 [build]
-  publish = "web"   # Directory containing your HTML, CSS, JS, and other assets
-  command = ""      # No build command needed for a static site
+  publish = "web/html"   # Directory containing the index.html file
+  command = ""           # No build command needed for a static site
 
 [[redirects]]
   from = "/old-page"
