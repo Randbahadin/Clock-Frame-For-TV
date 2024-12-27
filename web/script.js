@@ -52,21 +52,6 @@ document.querySelector('.right-arrow').addEventListener('click', () => {
 // Initialize background
 updateBackground();
 
-function updateClock() {
-    const now = new Date();
-
-    const options = {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true,
-        timeZone: 'Asia/Baghdad'
-    };
-
-    const timeString = now.toLocaleTimeString('en-US', options);
-    document.getElementById('clock').innerText = timeString;
-}
-
 function changeImage(direction) {
     if (direction === 'left') {
         currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
