@@ -1,9 +1,9 @@
 const images = [
-    '../img/paint1.png',
-    '../img/paint2.png',
-    '../img/paint3.png',
-    '../img/paint4.png',
-    '../img/paint5.png'
+    '/img/paint1.png',
+    '/img/paint2.png',
+    '/img/paint3.png',
+    '/img/paint4.png',
+    '/img/paint5.png'
 ];
 
 const positions = [
