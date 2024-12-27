@@ -6,29 +6,51 @@ const images = [
     '/img/paint5.png'
 ];
 
-const positions = [
-    { top: '10%', left: '10%' },
-    { top: '10%', right: '10%' },
-    { bottom: '10%', left: '10%' },
-    { bottom: '10%', right: '10%' },
-    { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }
-];
-
 let currentImageIndex = 0;
 
+// This function updates the background image based on the current index
 function updateBackground() {
     const body = document.body;
     body.style.backgroundImage = `url(${images[currentImageIndex]})`;
+    body.style.backgroundSize = 'cover';  // Ensure the image covers the screen
 
+    // Optional: Check if the frame also needs to adjust position
     const frame = document.getElementById('frame');
-    const position = positions[currentImageIndex];
-    frame.style.position = 'absolute';
-    frame.style.top = position.top || '';
-    frame.style.left = position.left || '';
-    frame.style.right = position.right || '';
-    frame.style.bottom = position.bottom || '';
-    frame.style.transform = position.transform || '';
+    if (frame) {
+        frame.style.position = 'absolute';
+    }
 }
+
+// Function to change the image based on left or right arrow press
+function changeImage(direction) {
+    if (direction === 'left') {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    } else if (direction === 'right') {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+    }
+    updateBackground(); // Update the background after changing the index
+}
+
+// Event listener for remote control keys (Arrow Left and Arrow Right)
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') {
+        changeImage('left');
+    } else if (event.key === 'ArrowRight') {
+        changeImage('right');
+    }
+});
+
+// Event listeners for the buttons (left and right arrows)
+document.querySelector('.left-arrow').addEventListener('click', () => {
+    changeImage('left');
+});
+
+document.querySelector('.right-arrow').addEventListener('click', () => {
+    changeImage('right');
+});
+
+// Initialize background
+updateBackground();
 
 function updateClock() {
     const now = new Date();
@@ -54,7 +76,7 @@ function changeImage(direction) {
     updateBackground();
 }
 
-// Event listener for remote control keys
+// Event listener for remote control keys (left and right arrows)
 document.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowLeft') {
         changeImage('left');
@@ -67,3 +89,29 @@ document.addEventListener('keydown', (event) => {
 setInterval(updateClock, 1000);
 updateClock();
 updateBackground();
+
+let mouseTimer;
+
+// Detect mouse movement on desktop
+document.addEventListener('mousemove', () => {
+    showArrows();
+    clearTimeout(mouseTimer);
+    mouseTimer = setTimeout(hideArrows, 1000); // Hide arrows after 1 second of inactivity
+});
+
+// Detect touch interaction on mobile
+document.addEventListener('touchstart', () => {
+    showArrows();
+    clearTimeout(mouseTimer);
+    mouseTimer = setTimeout(hideArrows, 1000); // Hide arrows after 1 second of inactivity
+});
+
+function showArrows() {
+    document.querySelector('.left-arrow').classList.add('visible');
+    document.querySelector('.right-arrow').classList.add('visible');
+}
+
+function hideArrows() {
+    document.querySelector('.left-arrow').classList.remove('visible');
+    document.querySelector('.right-arrow').classList.remove('visible');
+}

@@ -30,3 +30,53 @@ html, body {
     font-family: 'Arial', sans-serif;
     font-weight: bold;
 }
+
+.left-arrow, .right-arrow {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition for opacity */
+}
+
+.left-arrow {
+    left: 10px;
+    background-image: url('img/circle-arrow-left-solid.svg'); /* Left arrow SVG */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.right-arrow {
+    right: 10px;
+    background-image: url('img/circle-arrow-right-solid.svg'); /* Right arrow SVG */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.left-arrow.visible, .right-arrow.visible {
+    opacity: 1; /* Make them visible */
+}
+
+body {
+    transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
+    opacity: 1;
+}
+
+/* Class that will be added for fade-out effect */
+.fade-out {
+    opacity: 0;
+}
+
+/* Ensure the images cover the screen */
+body {
+    background-size: cover;
+    background-position: center;
+}

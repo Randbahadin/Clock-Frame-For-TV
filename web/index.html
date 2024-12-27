@@ -4,14 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TV Clock Frame</title>
-    <link rel="icon" href="/icon/clock-solid.svg" type="image/svg+xml"> 
+    <link id="favicon" rel="icon" type="image/png"> 
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="/manifest.json">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font -awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script>
+        // Function to draw a real-time clock on a canvas
+        function drawClock() {
+            const canvas = document.createElement('canvas');
+            const size = 64;  // Size of the canvas (favicon size)
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            // Clear the canvas (transparent background)
+            ctx.clearRect(0, 0, size, size);
+
+            // Draw the clock face (circle)
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size / 2 - 5, 0, Math.PI * 2);
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = "#333";  // Dark border color like in Icons8
+            ctx.stroke();
+
+            // Get the current time
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            // Draw the hour hand
+            const hourAngle = ((hours % 12) + minutes / 60) * (Math.PI * 2) / 12 - Math.PI / 2;
+            ctx.strokeStyle = "#000";  // Black for hour hand
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            ctx.moveTo(size / 2, size / 2);
+            ctx.lineTo(size / 2 + Math.cos(hourAngle) * size / 4, size / 2 + Math.sin(hourAngle) * size / 4);
+            ctx.stroke();
+
+            // Draw the minute hand
+            const minuteAngle = (minutes + seconds / 60) * (Math.PI * 2) / 60 - Math.PI / 2;
+            ctx.strokeStyle = "#000";  // Black for minute hand
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(size / 2, size / 2);
+            ctx.lineTo(size / 2 + Math.cos(minuteAngle) * size / 3, size / 2 + Math.sin(minuteAngle) * size / 3);
+            ctx.stroke();
+
+            // Draw the second hand
+            const secondAngle = seconds * (Math.PI * 2) / 60 - Math.PI / 2;
+            ctx.strokeStyle = "#ff0000";  // Red for second hand
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(size / 2, size / 2);
+            ctx.lineTo(size / 2 + Math.cos(secondAngle) * size / 2.5, size / 2 + Math.sin(secondAngle) * size / 2.5);
+            ctx.stroke();
+
+            // Return the canvas as a data URL (image format)
+            return canvas.toDataURL('image/png');
+        }
+
+        // Call drawClock to update the favicon every second
+        setInterval(function() {
+            const favicon = document.getElementById('favicon');
+            favicon.href = drawClock();
+        }, 1000);
+    </script>
 </head>
 <body>
     <div class="frame" id="frame">
         <div id="clock" class="clock"></div>
     </div>
+    
+    <p class="left-arrow" onclick="changeImage('prev')">
+</p>
+
+<p class="right-arrow" onclick="changeImage('next')">
+</p>
+
+<div class="image-container"></div>
 
     <script src="script.js"></script>
 </body>
