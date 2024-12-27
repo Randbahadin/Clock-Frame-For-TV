@@ -6,9 +6,17 @@ const images = [
     '/img/paint5.png'
 ];
 
+const positions = [
+    { top: '10%', left: '10%' },
+    { top: '10%', right: '10%' },
+    { bottom: '10%', left: '10%' },
+    { bottom: '10%', right: '10%' },
+    { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }
+];
+
 let currentImageIndex = 0;
 
-// Function to update the background with smooth transition
+// Update the background with smooth transition
 function updateBackground() {
     const body = document.body;
 
@@ -22,7 +30,23 @@ function updateBackground() {
     }, 1000); // Match the duration of the fade-out transition (1s)
 }
 
-// Function to change image on arrow key press
+// Function to update the clock
+function updateClock() {
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        timeZone: 'Asia/Baghdad'
+    };
+
+    const timeString = now.toLocaleTimeString('en-US', options);
+    document.getElementById('clock').innerText = timeString;
+}
+
+// Function to change image on arrow key press or button click
 function changeImage(direction) {
     if (direction === 'left') {
         currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
@@ -50,31 +74,36 @@ document.querySelector('.right-arrow').addEventListener('click', () => {
     changeImage('right');
 });
 
-// Initialize background
-updateBackground();
+// Function to handle mouse movement visibility for arrows
+let hideTimeout;
+const arrows = document.querySelectorAll('.left-arrow, .right-arrow');
 
-let mouseTimer;
-
-// Detect mouse movement on desktop
 document.addEventListener('mousemove', () => {
-    showArrows();
-    clearTimeout(mouseTimer);
-    mouseTimer = setTimeout(hideArrows, 1000); // Hide arrows after 1 second of inactivity
+    arrows.forEach(arrow => arrow.style.opacity = '1');
+    
+    // Clear the previous timeout to reset hide timeout
+    clearTimeout(hideTimeout);
+
+    // Set timeout to hide the arrows after 3 seconds of no movement
+    hideTimeout = setTimeout(() => {
+        arrows.forEach(arrow => arrow.style.opacity = '0');
+    }, 3000); // 3 seconds
 });
 
-// Detect touch interaction on mobile
+// Function to handle touch events on mobile for showing arrows
 document.addEventListener('touchstart', () => {
-    showArrows();
-    clearTimeout(mouseTimer);
-    mouseTimer = setTimeout(hideArrows, 1000); // Hide arrows after 1 second of inactivity
+    arrows.forEach(arrow => arrow.style.opacity = '1');
+    
+    // Clear the previous timeout to reset hide timeout
+    clearTimeout(hideTimeout);
+
+    // Set timeout to hide the arrows after 3 seconds of no touch
+    hideTimeout = setTimeout(() => {
+        arrows.forEach(arrow => arrow.style.opacity = '0');
+    }, 3000); // 3 seconds
 });
 
-function showArrows() {
-    document.querySelector('.left-arrow').classList.add('visible');
-    document.querySelector('.right-arrow').classList.add('visible');
-}
-
-function hideArrows() {
-    document.querySelector('.left-arrow').classList.remove('visible');
-    document.querySelector('.right-arrow').classList.remove('visible');
-}
+// Initialize background and clock
+updateBackground();
+setInterval(updateClock, 1000);
+updateClock();
