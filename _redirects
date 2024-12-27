@@ -1,0 +1,5 @@
+# Redirect from old-page to new-page
+/old-page  /new-page  301
+
+# Redirect all 404s to index.html (useful for single-page applications)
+/*  /index.html  404
