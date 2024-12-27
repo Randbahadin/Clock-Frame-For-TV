@@ -2,11 +2,11 @@
   Cache-Control: public, max-age=3600
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'
 
-/icon/clock-solid.svg
+/web/icon/clock-solid.svg
   Cache-Control: public, max-age=86400
 
-/css/style.css
+/web/style.css
   Cache-Control: public, max-age=86400
 
-/js/script.js
+/web/script.js
   Cache-Control: public, max-age=86400
